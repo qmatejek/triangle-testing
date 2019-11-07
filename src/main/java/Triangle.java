@@ -5,6 +5,15 @@ public class Triangle
     private double side1;
     private double side2;
     private double side3;
+
+    public Triangle(){}
+
+    public Triangle(double s1, double s2, double s3)
+    {
+        side1 = s1;
+        side2 = s2;
+        side3 = s3;
+    }
     
     public void setSide1(double s1)
     {
@@ -37,20 +46,22 @@ public class Triangle
     }
     
     //Checks to make sure the current triangle object is actually a valid triangle.
-    public void Verifier()
-    {
+    public void Verifier() throws Exception {
     	//Test to see if all the sides are positive real numbers.
 		if(side1 < 0 || side2 < 0 || side3 < 0)
 		{
 		    System.out.println("\nInvalid side lengths: side lengths must be a positive real number.");
-		    System.exit(0);
+		    //System.exit(0);
+            throw new Exception("\nInvalid side lengths: side lengths must be a positive real number.");
 		}
 		
 		//Test to see if triangle is valid using the Triangle Inequality Theorem: a+b>c, a+c>b, b+c>a  
-		if( ((side1 + side2) <= side3) || ((side1 + side3) <= side2) || ((side2 + side3) <= side1) )
+//		else if( ((side1 + side2) <= side3) || ((side1 + side3) <= side2) || ((side2 + side3) <= side1) )
+        else if(((side2 + side3) <= side1) || ((side1 + side2) <= side3) || ((side1 + side3) <= side2) )
 		{
 		    System.out.println("\nInvalid side lengths according to Triangle Inequality Theorem: a+b>c, a+c>b, b+c>a");
-		    System.exit(0);
+		    //System.exit(0);
+            throw new Exception("\nInvalid side lengths according to Triangle Inequality Theorem: a+b>c, a+c>b, b+c>a");
 		}
     }
     
@@ -108,22 +119,24 @@ public class Triangle
 //        System.out.println("Scalene: " + scalene);
 //        System.out.println("Right: " + right);
         
-        if(equilateral == true && isosceles == false && scalene == false && right == false)
+        if(equilateral == true)
         	System.out.println("This triangle is equilateral");
         
-        if(equilateral == false && isosceles == true && scalene == false && right == false)
+        if(equilateral == false && isosceles == true && right == false)
         	System.out.println("This triangle is isoceles");
         
-        if(equilateral == false && isosceles == false && scalene == true && right == false)
+        if(equilateral == false && scalene == true && right == false)
         	System.out.println("This triangle is scalene");
+
+        //A right triangle must also be either isosceles or scalene. It cannot be equilateral because all angles are 60
+        //degrees in an equilateral. That leaves the options of either no sides equal or two sides equal (scalene and Isosceles).
+//        if(equilateral == false && isosceles == false && scalene == false && right == true)
+//        	System.out.println("This triangle is right");
         
-        if(equilateral == false && isosceles == false && scalene == false && right == true)
-        	System.out.println("This triangle is right");
-        
-        if(equilateral == false && isosceles == true && scalene == false && right == true)
+        if(equilateral == false && isosceles == true && right == true)
         	System.out.println("This triangle is right isoceles");
         
-        if(equilateral == false && isosceles == false && scalene == true && right == true)
+        if(equilateral == false && scalene == true && right == true)
         	System.out.println("This triangle is right scalene");
         
     }
@@ -141,8 +154,7 @@ public class Triangle
     }
     
     //Calculates the side lengths of a triangle given the vertices in the form of ordered pairs.
-    public void calcLengths(Point a, Point b, Point c)
-    {
+    public void calcLengths(Point a, Point b, Point c) throws Exception {
     	
     	side1 = Math.sqrt( Math.pow( (b.getX() - a.getX()), 2) + Math.pow( (b.getY() - a.getY()), 2) );
     	side2 = Math.sqrt( Math.pow( (c.getX() - a.getX()), 2) + Math.pow( (c.getY() - a.getY()), 2) );

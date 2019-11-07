@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+
 public class Main {
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) throws Exception {
 		Scanner scnr = new Scanner(System.in);
 		
 		System.out.print("Please enter 1 to input side legths or 2 to input ordered pairs: ");
@@ -20,19 +20,19 @@ public class Main {
 			System.out.println("Square roots and fractions must be entered in decimal form. \n"
 					+ "Ex: sqrt(2) = 1.41421356237 and 3/4 = 0.75" + "\n");
 					
-			Scanner scnr2 = new Scanner(System.in);
+			//Scanner scnr2 = new Scanner(System.in);
 			
 			//Reading in the lengths of the sides.
 			System.out.print("Enter length of side 1 (a): ");
-			double side1 = Double.parseDouble(scnr2.nextLine());
+			double side1 = Double.parseDouble(scnr.next());
 			
 			System.out.print("Enter length of side 2 (b): ");
-			double side2 = Double.parseDouble(scnr2.nextLine());
+			double side2 = Double.parseDouble(scnr.next());
 			
 			System.out.print("Enter length of side 3 (c): ");
-			double side3 = Double.parseDouble(scnr2.nextLine());
+			double side3 = Double.parseDouble(scnr.next());
 			
-			scnr2.close();
+			//scnr2.close();
 			
 			Triangle shape = new Triangle(); //Initiating new triangle object.
 			
