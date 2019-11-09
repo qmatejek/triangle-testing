@@ -8,8 +8,11 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		Scanner scnr = new Scanner(System.in);
 		
-		System.out.print("Please enter 1 to input side legths or 2 to input ordered pairs: ");
-		int choice = scnr.nextInt();
+//		System.out.print("Please enter 1 to input side legths or 2 to input ordered pairs: ");
+//		int choice = scnr.nextInt();
+
+		int choice = Integer.parseInt(args[0]);
+		System.out.println("This is choice: " + choice);
 		
 		
 		//Input of side lengths
@@ -22,23 +25,36 @@ public class Main {
 					
 			//Scanner scnr2 = new Scanner(System.in);
 			
-			//Reading in the lengths of the sides.
-			System.out.print("Enter length of side 1 (a): ");
-			double side1 = Double.parseDouble(scnr.next());
-			
-			System.out.print("Enter length of side 2 (b): ");
-			double side2 = Double.parseDouble(scnr.next());
-			
-			System.out.print("Enter length of side 3 (c): ");
-			double side3 = Double.parseDouble(scnr.next());
+//			//Reading in the lengths of the sides.
+//			System.out.print("Enter length of side 1 (a): ");
+//			double side1 = Double.parseDouble(scnr.next());
+//
+//			System.out.print("Enter length of side 2 (b): ");
+//			double side2 = Double.parseDouble(scnr.next());
+//
+//			System.out.print("Enter length of side 3 (c): ");
+//			double side3 = Double.parseDouble(scnr.next());
+
+			System.out.print("Enter the side lengths (ex: x y z): ");
+			String line = scnr.nextLine();
+
+			String[] arr = line.split(" ");
+			double[] arr2 = new double[arr.length];
+
+			for(int i = 0; i < arr.length; i++)
+				arr2[i] = Double.parseDouble(arr[i]);
 			
 			//scnr2.close();
 			
 			Triangle shape = new Triangle(); //Initiating new triangle object.
 			
-			shape.setSide1(side1);
-			shape.setSide2(side2);
-			shape.setSide3(side3);
+//			shape.setSide1(side1);
+//			shape.setSide2(side2);
+//			shape.setSide3(side3);
+
+			shape.setSide1(arr2[0]);
+			shape.setSide2(arr2[1]);
+			shape.setSide3(arr2[2]);
 			
 			shape.Verifier();
 			shape.Identifier();
